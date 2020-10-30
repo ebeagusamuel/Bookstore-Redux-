@@ -16,8 +16,11 @@ const AddBookForm = ({ addBook }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className="form-group">
+    <form
+      onSubmit={handleSubmit}
+      className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 px-2 bg-light"
+    >
+      <div className="form-group mb-0">
         <label htmlFor="text">
           Book
           <input
@@ -31,7 +34,7 @@ const AddBookForm = ({ addBook }) => {
           />
         </label>
       </div>
-      <div className="form-group">
+      <div className="form-group mb-0">
         <label htmlFor="category">
           Please select a category
           <select
@@ -45,7 +48,9 @@ const AddBookForm = ({ addBook }) => {
           </select>
         </label>
       </div>
-      <button type="submit">Add book</button>
+      <button type="submit" className="mb-2 btn btn-info">
+        Add book
+      </button>
     </form>
   );
 };

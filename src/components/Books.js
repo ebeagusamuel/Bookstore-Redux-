@@ -7,7 +7,7 @@ const Books = ({ books }) => {
   const bookItems = books.map(book => <Book key={book.id} book={book} />);
 
   return (
-    <table className="table table-hover w-75 shadow-lg my-4 rounded border">
+    <table className="table table-hover w-75 shadow-lg mb-4 rounded border">
       <thead>
         <tr>
           <th scope="col">Book ID</th>
