@@ -1,4 +1,11 @@
 import React from 'react';
+import {connect} from 'react-redux'
+import AddBookForm from '../components/AddBookForm'
 
-const BookForm = () => <div>BookForm</div>;
+const mapDispatchToProps = (state) => {
+  
+}
+
+const BookForm = connect(null, null)(AddBookForm)
+
 export default BookForm;
