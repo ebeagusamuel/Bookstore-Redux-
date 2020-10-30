@@ -1,4 +1,12 @@
-import React from 'react';
+import { connect } from 'react-redux';
 
-const BookList = () => <div>BookList</div>;
+import Books from '../components/Books';
+
+const mapStateToProps = state => ({
+  books: state.library.books,
+  user: state.userProfile.name,
+});
+
+const BookList = connect(mapStateToProps, null)(Books);
+
 export default BookList;
