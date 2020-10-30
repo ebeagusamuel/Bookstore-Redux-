@@ -1,24 +1,38 @@
-import React from 'react'
+import React from 'react';
+import PropTypes from 'prop-types';
 
-const AddBookForm = () => {
-  const categories = ["Action", "Biography", "History", "Horror", "Kids", "Learning", "Sci-Fi"]
-  const categoriesOptions = categories.map(category => <option>{category}</option>)
-  
+const AddBookForm = ({ addBook }) => {
+  const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+  const categoriesOptions = categories.map(category => <option key={category}>{category}</option>);
+
   return (
-    <form>
-      <div class="form-group">
-        <label for="exampleFormControlInput1">Book</label>
-        <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="name@example.com" />
+    <form onSubmit={addBook()}>
+      <div className="form-group">
+        <label htmlFor="exampleFormControlInput1">
+          Book
+          <input
+            type="email"
+            className="form-control"
+            id="exampleFormControlInput1"
+            placeholder="name@example.com"
+          />
+        </label>
       </div>
-      <div class="form-group">
-        <label for="exampleFormControlSelect1">categories</label>
-        <select class="form-control" id="exampleFormControlSelect1">
-         {categoriesOptions}
-        </select>
+      <div className="form-group">
+        <label htmlFor="exampleFormControlSelect1">
+          categories
+          <select className="form-control" id="exampleFormControlSelect1">
+            {categoriesOptions}
+          </select>
+        </label>
       </div>
-      <button type="submit"></button>
+      <button type="submit">Add book</button>
     </form>
-  )
-}
+  );
+};
 
-export default AddBookForm
+AddBookForm.propTypes = {
+  addBook: PropTypes.func.isRequired,
+};
+
+export default AddBookForm;
