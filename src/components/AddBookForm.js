@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
-import { v4 as uuidv4 } from 'uuid';
 
 const AddBookForm = ({ addBook }) => {
   const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
@@ -8,9 +7,16 @@ const AddBookForm = ({ addBook }) => {
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
+  const [id, setId] = useState(50);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setId(id + 1);
+    addBook({ id, title, category });
+  };
 
   return (
-    <form onSubmit={() => addBook({ id: uuidv4(), title, category })}>
+    <form onSubmit={handleSubmit}>
       <div className="form-group">
         <label htmlFor="text">
           Book
@@ -19,7 +25,7 @@ const AddBookForm = ({ addBook }) => {
             className="form-control"
             name="text"
             id="text"
-            placeholder="name@example.com"
+            placeholder="Please enter the book title"
             onChange={e => setTitle(e.target.value)}
             value={title}
           />
@@ -27,7 +33,7 @@ const AddBookForm = ({ addBook }) => {
       </div>
       <div className="form-group">
         <label htmlFor="category">
-          categories
+          Please select a category
           <select
             className="form-control"
             id="category"
