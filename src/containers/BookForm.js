@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { addBook } from '../actions';
+import { addBook } from '../actions/index';
 
 const BookForm = ({ addBook }) => {
   const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
@@ -10,7 +10,7 @@ const BookForm = ({ addBook }) => {
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
-  const [id, setId] = useState(4);
+  const [id, setId] = useState(5);
 
   const handleSubmit = e => {
     e.preventDefault();
