@@ -16,6 +16,8 @@
 ## Screenshot of the app.
 
 ![image](readme-assets/app-screenshot.png) -->
+## Live Demo
+[Link](https://redux-bookstore199.herokuapp.com/)
 
 ## Built With
 

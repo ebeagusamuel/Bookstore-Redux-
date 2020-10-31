@@ -25,3 +25,13 @@ code {
     'Courier New',
     monospace;
 }
+
+table,
+form {
+  max-width: 750px;
+}
+
+.form-group input,
+.form-group select {
+  width: 300px;
+}
