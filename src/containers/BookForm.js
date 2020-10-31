@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
@@ -11,10 +10,20 @@ const BookForm = ({ addBook }) => {
 
   const [title, setTitle] = useState('');
   const [category, setCategory] = useState('');
+  const [id, setId] = useState(4);
+
+  const handleSubmit = e => {
+    e.preventDefault();
+    setId(id + 1);
+    addBook({ id, title, category });
+    setTitle('');
+    setCategory('');
+  };
 
   return (
     <form
       className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 px-2 bg-light"
+      onSubmit={handleSubmit}
     >
       <div className="form-group mb-0">
         <label htmlFor="text">
