@@ -8,8 +8,10 @@ const Book = ({ book, handleDelete }) => {
       <td>{id}</td>
       <td>{title}</td>
       <td>{category}</td>
-      <td>
-        <button type="button" onClick={() => handleDelete(book)}>Delete</button>
+      <td className="text-center">
+        <button type="button" className="btn btn-danger shadow" onClick={() => handleDelete(book)}>
+          X
+        </button>
       </td>
     </tr>
   );
