@@ -1,37 +1,69 @@
+:root {
+  --bubble-gum-pink: #ff5ab7;
+  --black: #1e1e1e;
+  --pale-grey: #f5f6fa;
+  --black-three: #121212;
+  --medium-blue: #307bbe;
+  --dodger-blue: #379cf6;
+  --white: #fafafa;
+  --black-5: rgba(0, 0, 0, 0.05);
+  --azure: #0290ff;
+}
+
 body {
-  margin: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--pale-grey);
 }
 
-code {
-  font-family:
-    source-code-pro,
-    Menlo,
-    Monaco,
-    Consolas,
-    'Courier New',
-    monospace;
+.Bookstore {
+  max-width: 1024px;
+  border-radius: 4px;
+  box-shadow: 0 0 60px 0 var(--black-5);
+  background-color: var(--white);
 }
 
-table,
-form {
-  max-width: 750px;
+.nav,
+main {
+  background-color: #fff;
+  padding: 0 100px;
 }
 
-.form-group input,
-.form-group select {
-  width: 280px;
+.nav-brand {
+  font-family: Montserrat, sans-serif;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--azure);
+}
+
+.nav-link.active {
+  font-weight: bold;
+}
+
+main {
+  background-color: #fafafa;
+}
+
+.book {
+  background-color: #fff;
+}
+
+.author {
+  position: relative;
+  top: -5px;
+}
+
+.book-status-percent-circle {
+  width: 68px;
+  height: 68px;
+  border-style: solid;
+  border-width: 5px;
+  border-image-source: linear-gradient(to bottom, var(--medium-blue), var(--dodger-blue));
+  border-image-slice: 1;
+}
+
+.add-book-form {
+  padding-bottom: 250px;
 }

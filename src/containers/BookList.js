@@ -3,29 +3,33 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Book from '../components/Book';
-import { removeBook } from '../actions/index';
+import CategoryFilter from '../components/CategoryFilter';
+import { removeBook, filterBooks } from '../actions/index';
 
-const BookList = ({ books, removeBook }) => {
+const BookList = ({
+  books, filter, removeBook, filterBooks, displayFilter,
+}) => {
   const handleDelete = book => {
     removeBook(book);
   };
 
-  const bookItems = books.map(book => (
-    <Book key={book.id} book={book} handleDelete={handleDelete} />
-  ));
+  const handleFilterChange = filter => {
+    filterBooks(filter);
+  };
+
+  let bookItems = [...books];
+
+  if (filter) {
+    bookItems = bookItems.filter(book => book.category === filter);
+  }
+
+  bookItems = bookItems.map(book => <Book key={book.id} book={book} handleDelete={handleDelete} />);
 
   return (
-    <table className="table table-hover w-75 shadow-lg mb-4 rounded border">
-      <thead>
-        <tr>
-          <th scope="col">Book ID</th>
-          <th scope="col">Title</th>
-          <th scope="col">Category</th>
-          <th scope="col">Remove</th>
-        </tr>
-      </thead>
-      <tbody>{bookItems}</tbody>
-    </table>
+    <section className="book-list py-4 border-bottom">
+      {displayFilter && <CategoryFilter onFilterChange={handleFilterChange} />}
+      {bookItems}
+    </section>
   );
 };
 
@@ -37,11 +41,15 @@ BookList.propTypes = {
       category: PropTypes.string,
     }),
   ).isRequired,
+  filter: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   removeBook: PropTypes.func.isRequired,
+  filterBooks: PropTypes.func.isRequired,
+  displayFilter: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({
   books: state.books,
+  filter: state.filter,
 });
 
-export default connect(mapStateToProps, { removeBook })(BookList);
+export default connect(mapStateToProps, { removeBook, filterBooks })(BookList);

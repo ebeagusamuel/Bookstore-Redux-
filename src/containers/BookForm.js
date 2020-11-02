@@ -5,6 +5,8 @@ import { connect } from 'react-redux';
 import { addBook } from '../actions/index';
 
 const BookForm = ({ addBook }) => {
+  const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+
   const [book, setBook] = useState({
     title: '',
     category: '',
@@ -28,49 +30,50 @@ const BookForm = ({ addBook }) => {
     });
   };
 
-  const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
   const categoriesOptions = categories.map(category => <option key={category}>{category}</option>);
+
   const { title, category } = book;
   return (
-    <form
-      className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 px-2 bg-light"
-      onSubmit={handleSubmit}
-    >
-      <div className="form-group mb-0 px-2">
-        <label htmlFor="text">
-          Book
+    <section className="add-book-form pt-4">
+      <h3 className="text-secondary">ADD NEW BOOK</h3>
+      <form
+        className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 bg-light"
+        onSubmit={handleSubmit}
+      >
+        <div className="form-group mb-0 w-50">
           <input
             type="text"
             className="form-control"
             name="title"
             id="title"
-            placeholder="Please enter the book title"
+            placeholder="Book title"
             minLength="3"
             maxLength="40"
             required
             onChange={handleChange}
             value={title}
           />
-        </label>
-      </div>
-      <div className="form-group mb-0">
-        <label htmlFor="category">
-          Please select a category
+        </div>
+        <div className="form-group mb-0 w-25">
           <select
             className="form-control"
             id="category"
             name="category"
             onChange={handleChange}
-            value={category || categories[0]}
+            value={category}
+            required
           >
+            <option value="" disabled>
+              Category
+            </option>
             {categoriesOptions}
           </select>
-        </label>
-      </div>
-      <button type="submit" className="mb-2 btn btn-info mr-2">
-        Add book
-      </button>
-    </form>
+        </div>
+        <button type="submit" className="btn btn-primary px-5 text-uppercase">
+          Add book
+        </button>
+      </form>
+    </section>
   );
 };
 
