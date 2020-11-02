@@ -5,9 +5,11 @@ import { connect } from 'react-redux';
 import { addBook } from '../actions/index';
 
 const BookForm = ({ addBook }) => {
+  const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
+
   const [book, setBook] = useState({
     title: '',
-    category: '',
+    category: categories[0],
     id: 5,
   });
 
@@ -17,7 +19,7 @@ const BookForm = ({ addBook }) => {
     setBook({
       id: book.id + 1,
       title: '',
-      category: '',
+      category: categories[0],
     });
   };
 
@@ -28,8 +30,8 @@ const BookForm = ({ addBook }) => {
     });
   };
 
-  const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
   const categoriesOptions = categories.map(category => <option key={category}>{category}</option>);
+
   const { title, category } = book;
   return (
     <form
@@ -61,7 +63,7 @@ const BookForm = ({ addBook }) => {
             id="category"
             name="category"
             onChange={handleChange}
-            value={category || categories[0]}
+            value={category}
           >
             {categoriesOptions}
           </select>

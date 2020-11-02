@@ -6,35 +6,22 @@ import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
 import { removeBook, filterBooks } from '../actions/index';
 
-const BookList = ({
-  books, filter, removeBook, filterBooks,
-}) => {
+const BookList = ({ books, filter, removeBook, filterBooks }) => {
   const handleDelete = book => {
     removeBook(book);
   };
 
   const handleFilterChange = filter => {
-    console.log(filter);
     filterBooks(filter);
   };
 
-  let bookItems;
+  let bookItems = [...books];
 
-  if (filter !== 'false') {
-    const booksToFilter = [...books];
-    const filteredBooks = booksToFilter.filter(book => book.category === filter);
-    bookItems = filteredBooks.map(book => (
-      <Book key={book.id} book={book} handleDelete={handleDelete} />
-    ));
-  } else {
-    bookItems = books.map(book => (
-      <Book key={book.id} book={book} handleDelete={handleDelete} />
-    ));
+  if (filter) {
+    bookItems = bookItems.filter(book => book.category === filter);
   }
 
-  // const bookItems = books.map(book => (
-  //   <Book key={book.id} book={book} handleDelete={handleDelete} />
-  // ));
+  bookItems = bookItems.map(book => <Book key={book.id} book={book} handleDelete={handleDelete} />);
 
   return (
     <>

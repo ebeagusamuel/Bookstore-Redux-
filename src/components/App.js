@@ -5,9 +5,9 @@ import BookForm from '../containers/BookForm';
 
 function App() {
   return (
-    <div className="my-4 d-flex flex-column align-items-center justify-content-center">
-      <BookForm />
+    <div className="app my-4 d-flex flex-column align-items-center justify-content-center">
       <BookList />
+      <BookForm />
     </div>
   );
 }

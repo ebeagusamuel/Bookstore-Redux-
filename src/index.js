@@ -15,7 +15,7 @@ const initialState = {
     { id: 3, title: 'Third book', category: 'Kids' },
     { id: 4, title: 'Fourth book', category: 'History' },
   ],
-  filter: 'false',
+  filter: '',
 };
 
 /* eslint-disable */

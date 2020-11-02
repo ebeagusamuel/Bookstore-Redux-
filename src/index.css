@@ -27,7 +27,8 @@ code {
 }
 
 table,
-form {
+form,
+.filter {
   max-width: 750px;
 }
 
