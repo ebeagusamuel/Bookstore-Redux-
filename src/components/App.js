@@ -26,7 +26,7 @@ function App() {
   }, []);
   return (
     <div className="Bookstore mx-auto rounded my-5 shadow-lg">
-      <nav className="nav d-flex align-items-center justify-content-between py-3 border-bottom">
+      <nav id="nav" className="nav d-flex align-items-center justify-content-between py-3 border-bottom">
         <ul className="list-unstyled mb-0 d-flex align-items-center">
           <li>
             <a href="/" className="nav-brand mr-3">

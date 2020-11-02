@@ -23,7 +23,7 @@ const CategoryFilter = ({ onFilterChange }) => {
       <label htmlFor="category" className="d-flex align-items-center justify-content-center mb-0">
         Filter by category
         <select
-          className="form-control ml-3"
+          className="form-control ml-3 w-50"
           id="category"
           name="category"
           onChange={e => onFilterChange(e.target.value)}

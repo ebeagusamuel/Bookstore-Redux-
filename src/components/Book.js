@@ -8,19 +8,19 @@ const Book = ({ book, handleDelete }) => {
       <div className="book-details">
         <p className="category mb-0 text-muted">{category}</p>
         <h3 className="title h5 font-weight-bold mb-0">{title}</h3>
-        <a href="/" className="author">
+        <a href="#nav" className="author">
           Suzanne Collins
         </a>
 
         <ul className="book-actions list-unstyled d-flex align-items-center">
           <li className="pr-2 border-right">
-            <a href="/">Comments</a>
+            <a href="#nav">Comments</a>
           </li>
           <li className="px-2 border-right">
-            <a href="/">Remove</a>
+            <a href="#nav" onClick={() => handleDelete(book)}>Remove</a>
           </li>
           <li className="px-2">
-            <a href="/" onClick={() => handleDelete(book)}>
+            <a href="#nav">
               Edit
             </a>
           </li>
