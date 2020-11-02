@@ -1,34 +1,34 @@
 :root {
+  --bubble-gum-pink: #ff5ab7;
+  --black: #1e1e1e;
   --pale-grey: #f5f6fa;
+  --black-three: #121212;
+  --medium-blue: #307bbe;
+  --dodger-blue: #379cf6;
   --white: #fafafa;
   --black-5: rgba(0, 0, 0, 0.05);
   --azure: #0290ff;
-  --black-three: #121212;
 }
 
-.App {
-  width: 1600px;
-  height: 1434px;
+body {
   background-color: var(--pale-grey);
 }
 
 .Bookstore {
-  width: 1400px;
-  height: 1097px;
+  max-width: 1024px;
   border-radius: 4px;
   box-shadow: 0 0 60px 0 var(--black-5);
   background-color: var(--white);
 }
 
-.Nav {
-  width: 1400px;
-  height: 95px;
+.nav,
+main {
   background-color: #ffffff;
+  padding: 0 100px;
 }
 
+
 .nav-brand {
-  width: 240px;
-  height: 37px;
   font-family: Montserrat;
   font-size: 30px;
   font-weight: bold;
@@ -39,41 +39,28 @@
   color: var(--azure);
 }
 
-/* body {
-  margin: 0;
-  font-family:
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    'Roboto',
-    'Oxygen',
-    'Ubuntu',
-    'Cantarell',
-    'Fira Sans',
-    'Droid Sans',
-    'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+main {
+  background-color: #fafafa;
 }
 
-code {
-  font-family:
-    source-code-pro,
-    Menlo,
-    Monaco,
-    Consolas,
-    'Courier New',
-    monospace;
+.book {
+  background-color: #fff;
 }
 
-table,
-form,
-.filter {
-  max-width: 750px;
+.author {
+  position: relative;
+  top: -5px;
 }
 
-.form-group input,
-.form-group select {
-  width: 280px;
-} */
+.book-status-percent-circle {
+  width: 68px;
+  height: 68px;
+  border-style: solid;
+  border-width: 5px;
+  border-image-source: linear-gradient(to bottom, var(--medium-blue), var(--dodger-blue));
+  border-image-slice: 1;
+}
+
+.add-book-form {
+  padding-bottom: 250px;
+}

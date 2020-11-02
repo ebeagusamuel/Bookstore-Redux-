@@ -24,10 +24,10 @@ const BookList = ({ books, filter, removeBook, filterBooks }) => {
   bookItems = bookItems.map(book => <Book key={book.id} book={book} handleDelete={handleDelete} />);
 
   return (
-    <>
+    <section className="book-list py-4 border-bottom">
       {/* <CategoryFilter onFilterChange={handleFilterChange} /> */}
       {bookItems}
-    </>
+    </section>
   );
 };
 
