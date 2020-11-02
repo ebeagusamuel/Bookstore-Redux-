@@ -3,6 +3,7 @@
 # Redux Bookstore.
 
 > In this project, we will be practising building and managing state using redux.
+
 <!-- > <br>
 > The app is mobile responsive and has keyboard support.
 > <br> -->
@@ -16,7 +17,9 @@
 ## Screenshot of the app.
 
 ![image](readme-assets/app-screenshot.png) -->
+
 ## Live Demo
+
 [Link](https://redux-bookstore199.herokuapp.com/)
 
 ## Built With
@@ -91,3 +94,7 @@ If you've read this far....give us a ⭐️!
 ## 📝 License
 
 This project is licensed by Microverse and the Odin Project
+
+## Credits
+
+Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>

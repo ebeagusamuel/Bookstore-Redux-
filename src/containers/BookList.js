@@ -3,12 +3,10 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Book from '../components/Book';
-import CategoryFilter from '../components/CategoryFilter';
+// import CategoryFilter from '../components/CategoryFilter';
 import { removeBook, filterBooks } from '../actions/index';
-
-const BookList = ({
-  books, filter, removeBook, filterBooks,
-}) => {
+/* eslint-disable */
+const BookList = ({ books, filter, removeBook, filterBooks }) => {
   const handleDelete = book => {
     removeBook(book);
   };
@@ -27,18 +25,8 @@ const BookList = ({
 
   return (
     <>
-      <CategoryFilter onFilterChange={handleFilterChange} />
-      <table className="table table-hover w-75 shadow-lg mb-4 rounded border">
-        <thead>
-          <tr>
-            <th scope="col">Book ID</th>
-            <th scope="col">Title</th>
-            <th scope="col">Category</th>
-            <th scope="col">Remove</th>
-          </tr>
-        </thead>
-        <tbody>{bookItems}</tbody>
-      </table>
+      {/* <CategoryFilter onFilterChange={handleFilterChange} /> */}
+      {bookItems}
     </>
   );
 };

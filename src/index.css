@@ -1,4 +1,45 @@
-body {
+:root {
+  --pale-grey: #f5f6fa;
+  --white: #fafafa;
+  --black-5: rgba(0, 0, 0, 0.05);
+  --azure: #0290ff;
+  --black-three: #121212;
+}
+
+.App {
+  width: 1600px;
+  height: 1434px;
+  background-color: var(--pale-grey);
+}
+
+.Bookstore {
+  width: 1400px;
+  height: 1097px;
+  border-radius: 4px;
+  box-shadow: 0 0 60px 0 var(--black-5);
+  background-color: var(--white);
+}
+
+.Nav {
+  width: 1400px;
+  height: 95px;
+  background-color: #ffffff;
+}
+
+.nav-brand {
+  width: 240px;
+  height: 37px;
+  font-family: Montserrat;
+  font-size: 30px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  color: var(--azure);
+}
+
+/* body {
   margin: 0;
   font-family:
     -apple-system,
@@ -35,4 +76,4 @@ form,
 .form-group input,
 .form-group select {
   width: 280px;
-}
+} */

@@ -9,7 +9,7 @@ const BookForm = ({ addBook }) => {
 
   const [book, setBook] = useState({
     title: '',
-    category: categories[0],
+    category: '',
     id: 5,
   });
 
@@ -19,7 +19,7 @@ const BookForm = ({ addBook }) => {
     setBook({
       id: book.id + 1,
       title: '',
-      category: categories[0],
+      category: '',
     });
   };
 
@@ -34,45 +34,46 @@ const BookForm = ({ addBook }) => {
 
   const { title, category } = book;
   return (
-    <form
-      className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 px-2 bg-light"
-      onSubmit={handleSubmit}
-    >
-      <div className="form-group mb-0 px-2">
-        <label htmlFor="text">
-          Book
+    <section>
+      <h3>ADD NEW BOOK</h3>
+      <form
+        className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 px-2 bg-light"
+        onSubmit={handleSubmit}
+      >
+        <div className="form-group mb-0 px-2">
           <input
             type="text"
             className="form-control"
             name="title"
             id="title"
-            placeholder="Please enter the book title"
+            placeholder="Book title"
             minLength="3"
             maxLength="40"
             required
             onChange={handleChange}
             value={title}
           />
-        </label>
-      </div>
-      <div className="form-group mb-0">
-        <label htmlFor="category">
-          Please select a category
+        </div>
+        <div className="form-group mb-0">
           <select
             className="form-control"
             id="category"
             name="category"
             onChange={handleChange}
             value={category}
+            required
           >
+            <option value="" disabled selected>
+              Category
+            </option>
             {categoriesOptions}
           </select>
-        </label>
-      </div>
-      <button type="submit" className="mb-2 btn btn-info mr-2">
-        Add book
-      </button>
-    </form>
+        </div>
+        <button type="submit" className="mb-2 btn btn-info mr-2">
+          Add book
+        </button>
+      </form>
+    </section>
   );
 };
 
