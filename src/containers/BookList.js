@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
 import { removeBook, filterBooks } from '../actions/index';
-/* eslint-disable */
-const BookList = ({ books, filter, removeBook, filterBooks, displayFilter }) => {
+
+const BookList = ({
+  books, filter, removeBook, filterBooks, displayFilter,
+}) => {
   const handleDelete = book => {
     removeBook(book);
   };
@@ -42,6 +44,7 @@ BookList.propTypes = {
   filter: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   removeBook: PropTypes.func.isRequired,
   filterBooks: PropTypes.func.isRequired,
+  displayFilter: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({

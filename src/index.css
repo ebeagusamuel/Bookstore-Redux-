@@ -23,13 +23,12 @@ body {
 
 .nav,
 main {
-  background-color: #ffffff;
+  background-color: #fff;
   padding: 0 100px;
 }
 
-
 .nav-brand {
-  font-family: Montserrat;
+  font-family: Montserrat, sans-serif;
   font-size: 30px;
   font-weight: bold;
   font-stretch: normal;
