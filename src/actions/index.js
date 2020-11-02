@@ -10,7 +10,7 @@ export const removeBook = book => ({
   payload: book,
 });
 
-export const filterBook = filter => ({
+export const filterBooks = filter => ({
   type: FILTER_BOOK,
   payload: filter,
 });

@@ -1,9 +1,8 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const CategoryFilter = () => {
-
+const CategoryFilter = ({ onFilterChange }) => {
   const categories = [
-    'All',
     'Action',
     'Biography',
     'History',
@@ -22,12 +21,18 @@ const CategoryFilter = () => {
           className="form-control"
           id="category"
           name="category"
+          onChange={e => onFilterChange(e.target.value)}
         >
+          <option value={false}>All</option>
           {categoriesOptions}
         </select>
       </label>
     </div>
   );
+};
+
+CategoryFilter.propTypes = {
+  onFilterChange: PropTypes.func.isRequired,
 };
 
 export default CategoryFilter;
