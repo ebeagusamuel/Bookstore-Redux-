@@ -2,21 +2,16 @@
 
 # Redux Bookstore.
 
-> In this project, we will be practising building and managing state using redux.
+> In this project, we were required to build a Bookstore by following a milestones guide.
 
-<!-- > <br>
-> The app is mobile responsive and has keyboard support.
-> <br> -->
+## App functionality
 
-<!-- ## App functionality
-
-- Users can perform calculations using the mouse or keyboard.
-
-## This web app is live, you can check it here: [Live demo](https://react-calculator-microverse.herokuapp.com/)
+- Users can see the books from the database and filter them by category.
+- Users can add other books by filling up the title and selecting a category.
 
 ## Screenshot of the app.
 
-![image](readme-assets/app-screenshot.png) -->
+![image](readme-assets/app-screenshot.png)
 
 ## Live Demo
 
@@ -27,11 +22,6 @@
 - React.js
 - create-react-app
 - Redux
-
-<!-- ## You can check other calculators that I built:
-
-- [ReactRedux - Canon Calculator clone](https://codepen.io/crisDevMM/full/ZjqKza)
-- [Javascript - Linux/Ubuntu calculator clone](https://cristianceamatu.github.io/theOdinProject-jscalculator/) -->
 
 ## Prerequisities
 
@@ -54,18 +44,6 @@ Run `yarn install` or `npm install` to install the npm packages from the `packag
 Run `yarn start` or `npm start` to start the webpack server, you can now navigate to `http://localhost:3000` to view the app. The server refreshes the app every time you make a change to a file used by it.<br>
 **Step 5**<br>
 Most important, enjoy the app!<br>
-
-<!-- ## Tests
-
-1. Open Terminal
-
-2. Install dependencies (only if you did not install them previously):
-
-   `yarn install`
-
-3. Run the tests with the command:
-
-   `yarn test` -->
 
 ## Authors
 
@@ -97,4 +75,4 @@ This project is licensed by Microverse and the Odin Project
 
 ## Credits
 
-Icons made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+User icon made by <a href="https://www.flaticon.com/authors/pixel-perfect" title="Pixel perfect">Pixel perfect</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
