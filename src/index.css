@@ -39,6 +39,10 @@ main {
   color: var(--azure);
 }
 
+.nav-link.active {
+  font-weight: bold;
+}
+
 main {
   background-color: #fafafa;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import userIcon from '../assets/user.svg';
 
@@ -6,6 +6,24 @@ import BookList from '../containers/BookList';
 import BookForm from '../containers/BookForm';
 
 function App() {
+  const [displayFilter, setDisplayFilter] = useState(false);
+
+  useEffect(() => {
+    const handleNavLickClick = e => {
+      if (e.target.id === 'filter') {
+        e.preventDefault();
+        setDisplayFilter(displayFilter => !displayFilter);
+      }
+      document.querySelectorAll('.active').forEach(item => item.classList.remove('active'));
+      e.target.classList.add('active');
+    };
+
+    document
+      .querySelectorAll('.nav-link')
+      .forEach(link => link.addEventListener('click', handleNavLickClick));
+
+    return document.removeEventListener('click', handleNavLickClick);
+  }, []);
   return (
     <div className="Bookstore mx-auto rounded my-5 shadow-lg">
       <nav className="nav d-flex align-items-center justify-content-between py-3 border-bottom">
@@ -16,12 +34,12 @@ function App() {
             </a>
           </li>
           <li>
-            <a href="/" className="nav-link text-uppercase text-dark">
+            <a href="/" className="nav-link active text-uppercase text-dark">
               Books
             </a>
           </li>
           <li>
-            <a href="/" className="nav-link text-uppercase text-muted">
+            <a href="/" className="nav-link text-uppercase text-muted" id="filter">
               Categories
             </a>
           </li>
@@ -42,7 +60,7 @@ function App() {
         </ul>
       </nav>
       <main>
-        <BookList />
+        <BookList displayFilter={displayFilter} />
         <BookForm />
       </main>
     </div>

@@ -19,9 +19,9 @@ const CategoryFilter = ({ onFilterChange }) => {
   ));
 
   return (
-    <div className="filter form-group mb-2 bg-light w-100 px-2 py-3 shadow-sm">
+    <div className="filter form-group mb-4 bg-white w-100 px-2 py-3 shadow-sm">
       <label htmlFor="category" className="d-flex align-items-center justify-content-center mb-0">
-        Filter books by category
+        Filter by category
         <select
           className="form-control ml-3"
           id="category"

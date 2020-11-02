@@ -30,7 +30,7 @@ const Book = ({ book, handleDelete }) => {
         <div className="book-status-percent d-flex align-items-center border-right pr-5">
           <svg id="circle" viewBox="0 0 100 100" width="100" height="100">
             <circle
-              r="40"
+              r="30"
               cx="50%"
               cy="50%"
               stroke="#e0e0e0"
@@ -41,17 +41,17 @@ const Book = ({ book, handleDelete }) => {
             />
             <circle
               id="success-value"
-              r="40"
+              r="30"
               cx="50%"
               cy="50%"
               stroke="#307bbe"
               fill="none"
               strokeWidth="10"
               strokeLinecap="round"
-              strokeDasharray="100, 100"
+              strokeDasharray="80, 80"
             />
           </svg>
-          <div>
+          <div className="ml-3">
             <h4 className="book-status-percent-title mb-0 h2">64%</h4>
             <p className="book-status-percent-subtitle mb-0 text-secondary">Completed</p>
           </div>

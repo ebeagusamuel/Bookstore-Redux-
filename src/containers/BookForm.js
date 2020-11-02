@@ -63,7 +63,7 @@ const BookForm = ({ addBook }) => {
             value={category}
             required
           >
-            <option disabled selected>
+            <option value="" disabled>
               Category
             </option>
             {categoriesOptions}
