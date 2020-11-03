@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
+import Comments from './Comments';
+
 /* eslint-disable */
 const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
-  const [comment, setComment] = useState('');
-  const handleAddCommentClick = () => {
-    onNewComment({ text: comment, book_id: id });
-    setComment('');
+  const [showComments, setShowComments] = useState(false);
+  const toggleComments = e => {
+    e.preventDefault();
+    setShowComments(showComments => !showComments);
   };
 
   const { title, author, categories, comments, id } = book;
@@ -14,17 +16,6 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
     <span className="pr-2" key={category.id}>
       {category.title}
     </span>
-  ));
-  const commentItems = comments.map(comment => (
-    <article
-      className="p-2 border rounded bg-light shadow-sm mb-2 d-flex align-items-center justify-content-between"
-      key={comment.id}
-    >
-      {comment.text}
-      <button className="btn text-danger" onClick={() => onDeleteComment(comment)}>
-        X
-      </button>
-    </article>
   ));
 
   return (
@@ -36,9 +27,15 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
           {author}
         </a>
 
-        <ul className="book-actions list-unstyled d-flex align-items-center">
+        <ul className="book-actions mt-2 list-unstyled d-flex align-items-center">
           <li className="pr-2 border-right">
-            <a href="#nav">Comments ({comments.length})</a>
+            <a
+              href="#nav"
+              onClick={toggleComments}
+              className={showComments ? 'text-secondary' : undefined}
+            >
+              Comments ({comments.length})
+            </a>
           </li>
           <li className="px-2 border-right">
             <a href="#nav" onClick={() => onDelete(book)}>
@@ -50,25 +47,14 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
           </li>
         </ul>
 
-        {commentItems}
-
-        <div className="add-comment-container">
-          <input
-            type="text"
-            minLength="2"
-            maxLength="1000"
-            required
-            name="comment"
-            id="comment"
-            className="form-control mb-2"
-            value={comment}
-            onChange={e => setComment(e.target.value)}
-            placeholder="Comment text here..."
+        {showComments && (
+          <Comments
+            comments={comments}
+            onDeleteComment={onDeleteComment}
+            onNewComment={onNewComment}
+            book_id={id}
           />
-          <button className="btn btn-info mx-auto d-block" onClick={handleAddCommentClick}>
-            Add comment
-          </button>
-        </div>
+        )}
       </div>
       <div className="book-status d-flex align-items-center pr-5">
         <div className="book-status-percent d-flex align-items-center border-right pr-5">
