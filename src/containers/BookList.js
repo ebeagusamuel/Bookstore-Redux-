@@ -1,33 +1,45 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
+/* eslint-disable */
 import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
-import { removeBook, filterBooks } from '../actions/index';
-
+import { removeBook, filterBooks, getBooks, addComment, removeComment } from '../actions/index';
 const BookList = ({
-  books, filter, removeBook, filterBooks, displayFilter,
+  books,
+  filter,
+  removeBook,
+  filterBooks,
+  displayFilter,
+  getBooks,
+  addComment,
 }) => {
-  const handleDelete = book => {
-    removeBook(book);
-  };
-
-  const handleFilterChange = filter => {
-    filterBooks(filter);
-  };
+  useEffect(() => {
+    getBooks();
+  }, []);
 
   let bookItems = [...books];
 
   if (filter) {
-    bookItems = bookItems.filter(book => book.category === filter);
+    bookItems = bookItems.filter(book =>
+      book.catagories.some(category => category.title === filter),
+    );
   }
 
-  bookItems = bookItems.map(book => <Book key={book.id} book={book} handleDelete={handleDelete} />);
+  bookItems = bookItems.map(book => (
+    <Book
+      key={book.id}
+      book={book}
+      onDelete={book => removeBook(book)}
+      onNewComment={comment => addComment(comment)}
+      onDeleteComment={comment => removeComment(comment)}
+    />
+  ));
 
   return (
     <section className="book-list py-4 border-bottom">
-      {displayFilter && <CategoryFilter onFilterChange={handleFilterChange} />}
+      {displayFilter && <CategoryFilter onFilterChange={filter => filterBooks(filter)} />}
       {bookItems}
     </section>
   );
@@ -36,15 +48,19 @@ const BookList = ({
 BookList.propTypes = {
   books: PropTypes.arrayOf(
     PropTypes.shape({
-      id: PropTypes.number,
-      title: PropTypes.string,
-      category: PropTypes.string,
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      categories: PropTypes.arrayOf(
+        PropTypes.shape({ id: PropTypes.number, title: PropTypes.title }).isRequired,
+      ).isRequired,
+      author: PropTypes.string.isRequired,
     }),
   ).isRequired,
   filter: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   removeBook: PropTypes.func.isRequired,
   filterBooks: PropTypes.func.isRequired,
   displayFilter: PropTypes.bool.isRequired,
+  addComment: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -52,4 +68,6 @@ const mapStateToProps = state => ({
   filter: state.filter,
 });
 
-export default connect(mapStateToProps, { removeBook, filterBooks })(BookList);
+export default connect(mapStateToProps, { removeBook, filterBooks, getBooks, addComment })(
+  BookList,
+);

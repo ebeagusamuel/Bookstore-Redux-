@@ -1,30 +1,74 @@
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-const Book = ({ book, handleDelete }) => {
-  const { title, category } = book;
+/* eslint-disable */
+const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
+  const [comment, setComment] = useState('');
+  const handleAddCommentClick = () => {
+    onNewComment({ text: comment, book_id: id });
+    setComment('');
+  };
+
+  const { title, author, categories, comments, id } = book;
+  const categoryItems = categories.map(category => (
+    <span className="pr-2" key={category.id}>
+      {category.title}
+    </span>
+  ));
+  const commentItems = comments.map(comment => (
+    <article
+      className="p-2 border rounded bg-light shadow-sm mb-2 d-flex align-items-center justify-content-between"
+      key={comment.id}
+    >
+      {comment.text}
+      <button className="btn text-danger" onClick={() => onDeleteComment(comment.id)}>
+        X
+      </button>
+    </article>
+  ));
+
   return (
     <article className="book d-flex align-items-center justify-content-between mb-3 p-3 border">
       <div className="book-details">
-        <p className="category mb-0 text-muted">{category}</p>
+        <p className="category mb-0 text-muted">{categoryItems}</p>
         <h3 className="title h5 font-weight-bold mb-0">{title}</h3>
         <a href="#nav" className="author">
-          Suzanne Collins
+          {author}
         </a>
 
         <ul className="book-actions list-unstyled d-flex align-items-center">
           <li className="pr-2 border-right">
-            <a href="#nav">Comments</a>
+            <a href="#nav">Comments ({comments.length})</a>
           </li>
           <li className="px-2 border-right">
-            <a href="#nav" onClick={() => handleDelete(book)}>Remove</a>
-          </li>
-          <li className="px-2">
-            <a href="#nav">
-              Edit
+            <a href="#nav" onClick={() => onDelete(book)}>
+              Remove
             </a>
           </li>
+          <li className="px-2">
+            <a href="#nav">Edit</a>
+          </li>
         </ul>
+
+        {commentItems}
+
+        <div className="add-comment-container">
+          <input
+            type="text"
+            minLength="2"
+            maxLength="1000"
+            required
+            name="comment"
+            id="comment"
+            className="form-control mb-2"
+            value={comment}
+            onChange={e => setComment(e.target.value)}
+            placeholder="Comment text here..."
+          />
+          <button className="btn btn-info mx-auto d-block" onClick={handleAddCommentClick}>
+            Add comment
+          </button>
+        </div>
       </div>
       <div className="book-status d-flex align-items-center pr-5">
         <div className="book-status-percent d-flex align-items-center border-right pr-5">
@@ -74,9 +118,17 @@ Book.propTypes = {
   book: PropTypes.shape({
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
-    category: PropTypes.string.isRequired,
+    author: PropTypes.string.isRequired,
+    categories: PropTypes.arrayOf(
+      PropTypes.shape({ id: PropTypes.number, title: PropTypes.title }).isRequired,
+    ).isRequired,
+    comments: PropTypes.arrayOf(
+      PropTypes.shape({ id: PropTypes.number, text: PropTypes.title }).isRequired,
+    ).isRequired,
   }).isRequired,
-  handleDelete: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onNewComment: PropTypes.func.isRequired,
+  onDeleteComment: PropTypes.func.isRequired,
 };
 
 export default Book;
