@@ -21,7 +21,7 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
       key={comment.id}
     >
       {comment.text}
-      <button className="btn text-danger" onClick={() => onDeleteComment(comment.id)}>
+      <button className="btn text-danger" onClick={() => onDeleteComment(comment)}>
         X
       </button>
     </article>

@@ -14,6 +14,7 @@ const BookList = ({
   displayFilter,
   getBooks,
   addComment,
+  removeComment,
 }) => {
   useEffect(() => {
     getBooks();
@@ -58,6 +59,8 @@ BookList.propTypes = {
   ).isRequired,
   filter: PropTypes.oneOfType([PropTypes.string, PropTypes.bool]).isRequired,
   removeBook: PropTypes.func.isRequired,
+  getBooks: PropTypes.func.isRequired,
+  removeComment: PropTypes.func.isRequired,
   filterBooks: PropTypes.func.isRequired,
   displayFilter: PropTypes.bool.isRequired,
   addComment: PropTypes.func.isRequired,
@@ -68,6 +71,10 @@ const mapStateToProps = state => ({
   filter: state.filter,
 });
 
-export default connect(mapStateToProps, { removeBook, filterBooks, getBooks, addComment })(
-  BookList,
-);
+export default connect(mapStateToProps, {
+  removeBook,
+  filterBooks,
+  getBooks,
+  addComment,
+  removeComment,
+})(BookList);

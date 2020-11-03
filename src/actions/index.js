@@ -7,6 +7,7 @@ import {
   GET_BOOKS,
   REQUEST_ERROR,
   ADD_COMMENT,
+  REMOVE_COMMENT,
 } from './types';
 
 export const getBooks = () => async dispatch => {
@@ -47,10 +48,24 @@ export const addComment = comment => async dispatch => {
   }
 };
 
-export const removeComment = book => ({
-  type: REMOVE_BOOK,
-  payload: book,
-});
+export const removeComment = comment => async dispatch => {
+  try {
+    const response = await axios.delete(
+      `https://bookstore-backend-rails.herokuapp.com/comments/${comment.id}`,
+    );
+    const payload = response.data;
+    return dispatch({
+      type: REMOVE_COMMENT,
+      payload,
+    });
+  } catch (error) {
+    console.log('error :>> ', error.message);
+    return dispatch({
+      type: REQUEST_ERROR,
+      payload: error,
+    });
+  }
+};
 
 export const addBook = book => ({
   type: CREATE_BOOK,

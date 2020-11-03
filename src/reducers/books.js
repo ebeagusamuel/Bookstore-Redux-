@@ -1,10 +1,14 @@
 /* eslint-disable */
-import { CREATE_BOOK, REMOVE_BOOK, GET_BOOKS, ADD_COMMENT } from '../actions/types';
+import { CREATE_BOOK, REMOVE_BOOK, GET_BOOKS, ADD_COMMENT, REMOVE_COMMENT } from '../actions/types';
 
 const bookReducer = (state = [], action) => {
   switch (action.type) {
     case GET_BOOKS:
       return [...action.payload];
+    case CREATE_BOOK:
+      return [...state, action.payload];
+    case REMOVE_BOOK:
+      return [...state].filter(book => book.id !== action.payload.id);
     case ADD_COMMENT:
       return [...state].map(book => {
         if (book.id === action.payload.book_id) {
@@ -12,10 +16,13 @@ const bookReducer = (state = [], action) => {
         }
         return book;
       });
-    case CREATE_BOOK:
-      return [...state, action.payload];
-    case REMOVE_BOOK:
-      return [...state].filter(book => book.id !== action.payload.id);
+    case REMOVE_COMMENT:
+      return [...state].map(book => {
+        if (book.id === action.payload.book_id) {
+          book.comments = book.comments.filter(comment => comment.id !== action.payload.id);
+        }
+        return book;
+      });
     default:
       return state;
   }
