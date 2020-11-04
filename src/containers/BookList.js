@@ -31,9 +31,7 @@ const BookList = ({
   let bookItems = [...books];
 
   if (filter) {
-    bookItems = bookItems.filter(book =>
-      book.catagories.some(category => category.title === filter),
-    );
+    bookItems = bookItems.filter(book => book.category === filter);
   }
 
   bookItems = bookItems
