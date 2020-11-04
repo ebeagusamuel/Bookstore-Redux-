@@ -25,10 +25,13 @@ function App() {
     return document.removeEventListener('click', handleNavLickClick);
   }, []);
   return (
-    <div className="Bookstore mx-auto rounded my-5 shadow-lg">
-      <nav id="nav" className="nav d-flex align-items-center justify-content-between py-3 border-bottom">
-        <ul className="list-unstyled mb-0 d-flex align-items-center">
-          <li>
+    <div className="Bookstore mx-auto rounded my-md-5 shadow-lg">
+      <nav
+        id="nav"
+        className="nav d-flex align-items-center  justify-content-between py-3 border-bottom"
+      >
+        <ul className="list-unstyled mb-0 d-flex align-items-center justify-content-center flex-wrap">
+          <li className="px-5 px-md-0">
             <a href="/" className="nav-brand mr-3">
               Bookstore CMS
             </a>
@@ -45,7 +48,7 @@ function App() {
           </li>
         </ul>
 
-        <ul className="list-unstyled mb-0">
+        <ul className="list-unstyled mb-0 d-none d-md-block">
           <li>
             <a href="/" className="user-profile">
               <img

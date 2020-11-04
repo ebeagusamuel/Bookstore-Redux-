@@ -10,6 +10,10 @@
   --azure: #0290ff;
 }
 
+* {
+  transition: all 0.3s ease-in;
+}
+
 body {
   background-color: var(--pale-grey);
 }
@@ -19,12 +23,6 @@ body {
   border-radius: 4px;
   box-shadow: 0 0 60px 0 var(--black-5);
   background-color: var(--white);
-}
-
-.nav,
-main {
-  background-color: #fff;
-  padding: 0 100px;
 }
 
 .nav-brand {
@@ -50,11 +48,6 @@ main {
   background-color: #fff;
 }
 
-.author {
-  position: relative;
-  top: -5px;
-}
-
 .book-status-percent-circle {
   width: 68px;
   height: 68px;
@@ -64,6 +57,22 @@ main {
   border-image-slice: 1;
 }
 
+@media (min-width: 768px) {
+  .book-status-percent {
+    border-right: 1px solid rgba(177, 177, 177, 0.664);
+  }
+
+  .nav,
+  main {
+    background-color: #fff;
+    padding: 0 100px;
+  }
+}
+
 .add-book-form {
   padding-bottom: 250px;
+}
+
+.book-details {
+  min-width: 325px;
 }

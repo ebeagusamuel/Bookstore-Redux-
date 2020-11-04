@@ -1,28 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { createStore } from 'redux';
+import { createStore, compose, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
+import thunk from 'redux-thunk';
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './index.css';
 import App from './components/App';
 import rootReducer from './reducers';
 
-const initialState = {
-  books: [
-    { id: 1, title: 'First book', category: 'Learning' },
-    { id: 2, title: 'Second book', category: 'Horror' },
-    { id: 3, title: 'Third book', category: 'Kids' },
-    { id: 4, title: 'Fourth book', category: 'History' },
-  ],
-  filter: '',
-};
+const initialState = {};
+const middleware = [thunk];
 
-/* eslint-disable */
+/* eslint-disable no-underscore-dangle */
 const store = createStore(
   rootReducer,
   initialState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  compose(
+    applyMiddleware(...middleware),
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__(),
+  ),
 );
 /* eslint-enable */
 
