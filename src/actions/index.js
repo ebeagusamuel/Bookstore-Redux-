@@ -1,5 +1,5 @@
 import axios from 'axios';
-/* eslint-disable */
+
 import {
   CREATE_BOOK,
   REMOVE_BOOK,
@@ -17,6 +17,24 @@ export const getBooks = () => async dispatch => {
     return dispatch({
       type: GET_BOOKS,
       payload: books,
+    });
+  } catch (error) {
+    console.log('error :>> ', error.message);
+    return dispatch({
+      type: REQUEST_ERROR,
+      payload: error,
+    });
+  }
+};
+
+export const addBook = book => async dispatch => {
+  try {
+    const data = book;
+    const response = await axios.post('https://bookstore-backend-rails.herokuapp.com/books/', data);
+    const payload = response.data;
+    return dispatch({
+      type: CREATE_BOOK,
+      payload,
     });
   } catch (error) {
     console.log('error :>> ', error.message);
@@ -66,11 +84,6 @@ export const removeComment = comment => async dispatch => {
     });
   }
 };
-
-export const addBook = book => ({
-  type: CREATE_BOOK,
-  payload: book,
-});
 
 export const removeBook = book => ({
   type: REMOVE_BOOK,

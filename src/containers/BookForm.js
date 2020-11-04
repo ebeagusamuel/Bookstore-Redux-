@@ -9,15 +9,19 @@ const BookForm = ({ addBook }) => {
 
   const [book, setBook] = useState({
     title: '',
+    author: 'Demo Author',
     category: '',
-    id: 5,
+    percent: 0,
+    categories: ['Action', 'Horror'],
   });
 
   const handleSubmit = e => {
     e.preventDefault();
     addBook(book);
     setBook({
-      id: book.id + 1,
+      percent: 0,
+      categories: ['Action', 'Horror'],
+      author: 'Demo Author',
       title: '',
       category: '',
     });

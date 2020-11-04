@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 import Comments from './Comments';
 
-/* eslint-disable */
+/* eslint-disable object-curly-newline, react/jsx-one-expression-per-line */
 const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
   const [showComments, setShowComments] = useState(false);
   const toggleComments = e => {
@@ -34,7 +34,7 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
               onClick={toggleComments}
               className={showComments ? 'text-secondary' : undefined}
             >
-              Comments ({comments.length})
+              Comments ({comments ? comments.length : 0})
             </a>
           </li>
           <li className="px-2 border-right">
@@ -47,7 +47,7 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
           </li>
         </ul>
 
-        {showComments && (
+        {comments && showComments && (
           <Comments
             comments={comments}
             onDeleteComment={onDeleteComment}
@@ -110,7 +110,7 @@ Book.propTypes = {
     ).isRequired,
     comments: PropTypes.arrayOf(
       PropTypes.shape({ id: PropTypes.number, text: PropTypes.title }).isRequired,
-    ).isRequired,
+    ),
   }).isRequired,
   onDelete: PropTypes.func.isRequired,
   onNewComment: PropTypes.func.isRequired,
