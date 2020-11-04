@@ -1,4 +1,3 @@
-/* eslint-disable */
 import {
   CREATE_BOOK,
   REMOVE_BOOK,
@@ -25,15 +24,20 @@ const bookReducer = (state = [], action) => {
       return [...state].filter(book => book.id !== action.payload.id);
     case ADD_COMMENT:
       return [...state].map(book => {
+        const newBook = book;
         if (book.id === action.payload.book_id) {
-          book.comments = [...book.comments, action.payload];
+          newBook.comments = [...book.comments, action.payload];
+          return newBook;
         }
         return book;
       });
     case REMOVE_COMMENT:
       return [...state].map(book => {
+        const newBook = book;
+
         if (book.id === action.payload.book_id) {
-          book.comments = book.comments.filter(comment => comment.id !== action.payload.id);
+          newBook.comments = book.comments.filter(comment => comment.id !== action.payload.id);
+          return newBook;
         }
         return book;
       });

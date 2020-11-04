@@ -3,8 +3,9 @@ import PropTypes from 'prop-types';
 
 import Comments from './Comments';
 
-/* eslint-disable object-curly-newline, react/jsx-one-expression-per-line, camelcase */
-const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }) => {
+const Book = ({
+  book, onDelete, onNewComment, onDeleteComment, onChapterUpdate,
+}) => {
   const [showComments, setShowComments] = useState(false);
   const toggleComments = e => {
     e.preventDefault();
@@ -23,7 +24,9 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
     onDelete(book);
   };
 
-  const { title, author, category, comments, id } = book;
+  const {
+    title, author, category, comments, id,
+  } = book;
 
   return (
     <article className="book d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3 p-3 border">
@@ -39,7 +42,9 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
               onClick={toggleComments}
               className={showComments ? 'text-secondary' : undefined}
             >
-              Comments ({comments ? comments.length : 0})
+              Comments (
+              {comments ? comments.length : 0}
+              )
             </a>
           </li>
           <li className="px-2">
@@ -85,7 +90,10 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
               />
             </svg>
             <div className="ml-3">
-              <h4 className="book-status-percent-title mb-0 h2">{percentage}%</h4>
+              <h4 className="book-status-percent-title mb-0 h2">
+                {percentage}
+                %
+              </h4>
               <p className="book-status-percent-subtitle mb-0 text-secondary">Completed</p>
               <div className="form-group">
                 <input

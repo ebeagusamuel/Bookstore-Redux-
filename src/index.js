@@ -12,7 +12,7 @@ import rootReducer from './reducers';
 const initialState = {};
 const middleware = [thunk];
 
-/* eslint-disable */
+/* eslint-disable no-underscore-dangle */
 const store = createStore(
   rootReducer,
   initialState,

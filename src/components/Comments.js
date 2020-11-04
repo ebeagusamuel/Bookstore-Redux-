@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 
-/* eslint-disable implicit-arrow-linebreak, camelcase, object-curly-newline */
-const Comments = ({ comments, onDeleteComment, onNewComment, book_id }) => {
+/* eslint-disable camelcase */
+const Comments = ({
+  comments, onDeleteComment, onNewComment, book_id,
+}) => {
   const [text, setText] = useState('');
   const handleAddComment = () => {
     onNewComment({ text, book_id });

@@ -57,8 +57,7 @@ main {
   border-image-slice: 1;
 }
 
-
-@media(min-width: 768px) {
+@media (min-width: 768px) {
   .book-status-percent {
     border-right: 1px solid rgba(177, 177, 177, 0.664);
   }

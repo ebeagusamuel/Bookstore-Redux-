@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
-/* eslint-disable */
 import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
 import {
@@ -13,6 +12,7 @@ import {
   removeComment,
   updateBook,
 } from '../actions/index';
+
 const BookList = ({
   books,
   filter,
