@@ -26,8 +26,8 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
   const { title, author, category, comments, id } = book;
 
   return (
-    <article className="book d-flex align-items-center justify-content-between mb-3 p-3 border">
-      <div className="book-details">
+    <article className="book d-flex flex-column flex-lg-row align-items-center justify-content-between mb-3 p-3 border">
+      <div className="book-details p-3 p-lg-0 w-75 mb-2 mb-lg-0">
         <p className="category mb-0 text-muted">{category}</p>
         <h3 className="title h5 font-weight-bold mb-0 text-secondary">{title}</h3>
         <span className="author text-info">{author}</span>
@@ -59,8 +59,8 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
         )}
       </div>
       <div>
-        <div className="book-status d-flex align-items-center pr-5">
-          <div className="book-status-percent d-flex align-items-center border-right pr-3">
+        <div className="book-status d-flex flex-column flex-md-row align-items-center pr-md-5">
+          <div className="book-status-percent d-flex align-items-center pr-md-3">
             <svg id="circle" viewBox="0 0 100 100" width="100" height="100">
               <circle
                 r="30"
@@ -103,7 +103,7 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
             </div>
           </div>
 
-          <div className="book-status-chapter pl-3">
+          <div className="book-status-chapter pl-md-3">
             <p className="book-status-chapter-subtitle text-secondary mb-0">CURRENT CHAPTER</p>
             <h4 className="book-status-chapter-title h5">
               <input

@@ -37,12 +37,12 @@ const BookForm = ({ addBook }) => {
   const { title, category, author } = book;
   return (
     <section className="add-book-form pt-4">
-      <h3 className="text-secondary">ADD NEW BOOK</h3>
+      <h3 className="text-secondary px-3">ADD NEW BOOK</h3>
       <form
-        className="d-flex align-items-end justify-content-between shadow-top w-100 py-3 bg-light"
+        className="d-flex align-items-stretch align-items-md-center flex-wrap flex-column flex-md-row justify-content-center justify-content-lg-between shadow-top w-100 py-3 px-2 bg-light"
         onSubmit={handleSubmit}
       >
-        <div className="form-group mb-0 w-50">
+        <div className="form-group mb-0">
           <input
             type="text"
             className="form-control"
@@ -57,7 +57,7 @@ const BookForm = ({ addBook }) => {
           />
         </div>
 
-        <div className="form-group mb-0 w-50">
+        <div className="form-group mb-0 mx-md-2">
           <input
             type="text"
             className="form-control"
@@ -72,7 +72,7 @@ const BookForm = ({ addBook }) => {
           />
         </div>
 
-        <div className="form-group mb-0 w-25">
+        <div className="form-group mb-0 w-md-25">
           <select
             className="form-control"
             id="category"
@@ -87,7 +87,7 @@ const BookForm = ({ addBook }) => {
             {categoriesOptions}
           </select>
         </div>
-        <button type="submit" className="btn btn-info px-5 text-uppercase">
+        <button type="submit" className="btn btn-info px-5 text-uppercase ml-md-2 mt-2 mt-lg-0">
           Add book
         </button>
       </form>

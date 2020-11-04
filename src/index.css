@@ -25,12 +25,6 @@ body {
   background-color: var(--white);
 }
 
-.nav,
-main {
-  background-color: #fff;
-  padding: 0 100px;
-}
-
 .nav-brand {
   font-family: Montserrat, sans-serif;
   font-size: 30px;
@@ -61,6 +55,19 @@ main {
   border-width: 5px;
   border-image-source: linear-gradient(to bottom, var(--medium-blue), var(--dodger-blue));
   border-image-slice: 1;
+}
+
+
+@media(min-width: 768px) {
+  .book-status-percent {
+    border-right: 1px solid rgba(177, 177, 177, 0.664);
+  }
+
+  .nav,
+  main {
+    background-color: #fff;
+    padding: 0 100px;
+  }
 }
 
 .add-book-form {
