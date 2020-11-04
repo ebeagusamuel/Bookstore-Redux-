@@ -1,5 +1,12 @@
 /* eslint-disable */
-import { CREATE_BOOK, REMOVE_BOOK, GET_BOOKS, ADD_COMMENT, REMOVE_COMMENT } from '../actions/types';
+import {
+  CREATE_BOOK,
+  REMOVE_BOOK,
+  GET_BOOKS,
+  ADD_COMMENT,
+  REMOVE_COMMENT,
+  UPDATE_CHAPTER,
+} from '../actions/types';
 
 const bookReducer = (state = [], action) => {
   switch (action.type) {
@@ -7,6 +14,13 @@ const bookReducer = (state = [], action) => {
       return [...action.payload];
     case CREATE_BOOK:
       return [...state, action.payload];
+    case UPDATE_CHAPTER:
+      return [...state].map(book => {
+        if (book.id === action.payload.id) {
+          return action.payload;
+        }
+        return book;
+      });
     case REMOVE_BOOK:
       return [...state].filter(book => book.id !== action.payload.id);
     case ADD_COMMENT:

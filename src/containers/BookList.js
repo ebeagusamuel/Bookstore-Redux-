@@ -5,7 +5,14 @@ import PropTypes from 'prop-types';
 /* eslint-disable */
 import Book from '../components/Book';
 import CategoryFilter from '../components/CategoryFilter';
-import { removeBook, filterBooks, getBooks, addComment, removeComment } from '../actions/index';
+import {
+  removeBook,
+  filterBooks,
+  getBooks,
+  addComment,
+  removeComment,
+  updateChapter,
+} from '../actions/index';
 const BookList = ({
   books,
   filter,
@@ -15,6 +22,7 @@ const BookList = ({
   getBooks,
   addComment,
   removeComment,
+  updateChapter,
 }) => {
   useEffect(() => {
     getBooks();
@@ -35,6 +43,7 @@ const BookList = ({
       onDelete={book => removeBook(book)}
       onNewComment={comment => addComment(comment)}
       onDeleteComment={comment => removeComment(comment)}
+      onChapterUpdate={(book, chapter) => updateChapter(book, chapter)}
     />
   ));
 
@@ -51,9 +60,7 @@ BookList.propTypes = {
     PropTypes.shape({
       id: PropTypes.number.isRequired,
       title: PropTypes.string.isRequired,
-      categories: PropTypes.arrayOf(
-        PropTypes.shape({ id: PropTypes.number, title: PropTypes.title }).isRequired,
-      ).isRequired,
+      category: PropTypes.string.isRequired,
       author: PropTypes.string.isRequired,
     }),
   ).isRequired,
@@ -64,6 +71,7 @@ BookList.propTypes = {
   filterBooks: PropTypes.func.isRequired,
   displayFilter: PropTypes.bool.isRequired,
   addComment: PropTypes.func.isRequired,
+  updateChapter: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -77,4 +85,5 @@ export default connect(mapStateToProps, {
   getBooks,
   addComment,
   removeComment,
+  updateChapter,
 })(BookList);

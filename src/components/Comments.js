@@ -22,26 +22,28 @@ const Comments = ({ comments, onDeleteComment, onNewComment, book_id }) => {
   ));
 
   return (
-    <>
+    <div>
       {commentItems}
       <div className="add-comment-container">
-        <input
-          type="text"
-          minLength="2"
-          maxLength="1000"
-          required
-          name="comment"
-          id="comment"
-          className="form-control mb-2"
-          value={text}
-          onChange={e => setText(e.target.value)}
-          placeholder="Comment text here..."
-        />
+        <div className="form-group">
+          <input
+            type="text"
+            minLength="2"
+            maxLength="1000"
+            required
+            name="comment"
+            id="comment"
+            className="form-control mb-2"
+            value={text}
+            onChange={e => setText(e.target.value)}
+            placeholder="Comment text here..."
+          />
+        </div>
         <button type="button" className="btn btn-info mx-auto d-block" onClick={handleAddComment}>
           Add comment
         </button>
       </div>
-    </>
+    </div>
   );
 };
 

@@ -3,29 +3,33 @@ import PropTypes from 'prop-types';
 
 import Comments from './Comments';
 
-/* eslint-disable object-curly-newline, react/jsx-one-expression-per-line */
-const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
+/* eslint-disable object-curly-newline, react/jsx-one-expression-per-line, camelcase */
+const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }) => {
   const [showComments, setShowComments] = useState(false);
   const toggleComments = e => {
     e.preventDefault();
     setShowComments(showComments => !showComments);
   };
 
-  const { title, author, categories, comments, id } = book;
-  const categoryItems = categories.map(category => (
-    <span className="pr-2" key={category.id}>
-      {category.title}
-    </span>
-  ));
+  const [chapter, setChapter] = useState(book.current_chapter);
+  const handleUpdateChapter = e => {
+    e.preventDefault();
+    onChapterUpdate(book, chapter);
+  };
+
+  const handleClick = e => {
+    e.preventDefault();
+    onDelete(book);
+  };
+
+  const { title, author, category, comments, percent, id } = book;
 
   return (
     <article className="book d-flex align-items-center justify-content-between mb-3 p-3 border">
       <div className="book-details">
-        <p className="category mb-0 text-muted">{categoryItems}</p>
-        <h3 className="title h5 font-weight-bold mb-0">{title}</h3>
-        <a href="#nav" className="author">
-          {author}
-        </a>
+        <p className="category mb-0 text-muted">{category}</p>
+        <h3 className="title h5 font-weight-bold mb-0 text-secondary">{title}</h3>
+        <span className="author text-info">{author}</span>
 
         <ul className="book-actions mt-2 list-unstyled d-flex align-items-center">
           <li className="pr-2 border-right">
@@ -37,17 +41,14 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
               Comments ({comments ? comments.length : 0})
             </a>
           </li>
-          <li className="px-2 border-right">
-            <a href="#nav" onClick={() => onDelete(book)}>
+          <li className="px-2">
+            <a href="/" onClick={handleClick}>
               Remove
             </a>
           </li>
-          <li className="px-2">
-            <a href="#nav">Edit</a>
-          </li>
         </ul>
 
-        {comments && showComments && (
+        {showComments && (
           <Comments
             comments={comments}
             onDeleteComment={onDeleteComment}
@@ -67,7 +68,7 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
               fill="none"
               strokeWidth="10"
               strokeLinecap="round"
-              strokeDasharray="400, 400"
+              strokeDasharray="0, 0"
             />
             <circle
               id="success-value"
@@ -78,21 +79,36 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment }) => {
               fill="none"
               strokeWidth="10"
               strokeLinecap="round"
-              strokeDasharray="80, 80"
+              strokeDasharray={`${+percent * 1.8}, 400`}
             />
           </svg>
           <div className="ml-3">
-            <h4 className="book-status-percent-title mb-0 h2">64%</h4>
+            <h4 className="book-status-percent-title mb-0 h2">{percent}%</h4>
             <p className="book-status-percent-subtitle mb-0 text-secondary">Completed</p>
           </div>
         </div>
 
         <div className="book-status-chapter pl-5">
           <p className="book-status-chapter-subtitle text-secondary mb-0">CURRENT CHAPTER</p>
-          <h4 className="book-status-chapter-title h5">Chapter 17</h4>
+          <h4 className="book-status-chapter-title h5">
+            <input
+              className="form-control"
+              type="number"
+              name="current_chapter"
+              id="current_chapter"
+              onChange={e => setChapter(e.target.value)}
+              min="0"
+              max="100"
+              value={chapter || '0'}
+            />
+          </h4>
 
-          <button type="button" className="btn btn-primary rounded px-4 text-uppercase mt-2">
-            Update progress
+          <button
+            type="button"
+            className="btn btn-info rounded px-4 py-1 text-uppercase mt-2"
+            onClick={handleUpdateChapter}
+          >
+            Update
           </button>
         </div>
       </div>
@@ -105,9 +121,9 @@ Book.propTypes = {
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     author: PropTypes.string.isRequired,
-    categories: PropTypes.arrayOf(
-      PropTypes.shape({ id: PropTypes.number, title: PropTypes.title }).isRequired,
-    ).isRequired,
+    category: PropTypes.string.isRequired,
+    percent: PropTypes.string.isRequired,
+    current_chapter: PropTypes.string,
     comments: PropTypes.arrayOf(
       PropTypes.shape({ id: PropTypes.number, text: PropTypes.title }).isRequired,
     ),
@@ -115,6 +131,7 @@ Book.propTypes = {
   onDelete: PropTypes.func.isRequired,
   onNewComment: PropTypes.func.isRequired,
   onDeleteComment: PropTypes.func.isRequired,
+  onChapterUpdate: PropTypes.func.isRequired,
 };
 
 export default Book;

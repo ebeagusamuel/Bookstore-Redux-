@@ -3,25 +3,23 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
 import { addBook } from '../actions/index';
-
+/* eslint-disable object-curly-newline */
 const BookForm = ({ addBook }) => {
   const categories = ['Action', 'Biography', 'History', 'Horror', 'Kids', 'Learning', 'Sci-Fi'];
 
   const [book, setBook] = useState({
     title: '',
-    author: 'Demo Author',
+    author: '',
     category: '',
-    percent: 0,
-    categories: ['Action', 'Horror'],
+    percent: '0',
   });
 
   const handleSubmit = e => {
     e.preventDefault();
     addBook(book);
     setBook({
-      percent: 0,
-      categories: ['Action', 'Horror'],
-      author: 'Demo Author',
+      percent: '0',
+      author: '',
       title: '',
       category: '',
     });
@@ -36,7 +34,7 @@ const BookForm = ({ addBook }) => {
 
   const categoriesOptions = categories.map(category => <option key={category}>{category}</option>);
 
-  const { title, category } = book;
+  const { title, category, author, percent } = book;
   return (
     <section className="add-book-form pt-4">
       <h3 className="text-secondary">ADD NEW BOOK</h3>
@@ -58,6 +56,40 @@ const BookForm = ({ addBook }) => {
             value={title}
           />
         </div>
+
+        <div className="form-group mb-0 w-50">
+          <input
+            type="text"
+            className="form-control"
+            name="author"
+            id="author"
+            placeholder="Book author"
+            minLength="3"
+            maxLength="40"
+            required
+            onChange={handleChange}
+            value={author}
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="percent" className="text-center">
+            {percent}
+            %
+            <input
+              type="range"
+              className="form-control-range"
+              name="percent"
+              id="percent"
+              min="0"
+              max="100"
+              required
+              onChange={handleChange}
+              value={percent}
+            />
+          </label>
+        </div>
+
         <div className="form-group mb-0 w-25">
           <select
             className="form-control"
@@ -73,7 +105,7 @@ const BookForm = ({ addBook }) => {
             {categoriesOptions}
           </select>
         </div>
-        <button type="submit" className="btn btn-primary px-5 text-uppercase">
+        <button type="submit" className="btn btn-info px-5 text-uppercase">
           Add book
         </button>
       </form>
