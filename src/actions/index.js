@@ -1,4 +1,5 @@
 import axios from 'axios';
+/* eslint-disable */
 
 import {
   CREATE_BOOK,
@@ -8,7 +9,7 @@ import {
   REQUEST_ERROR,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  UPDATE_CHAPTER,
+  UPDATE_BOOK,
 } from './types';
 
 export const getBooks = () => async dispatch => {
@@ -45,17 +46,17 @@ export const addBook = book => async dispatch => {
     });
   }
 };
-/* eslint-disable */
-export const updateChapter = (book, chapter) => async dispatch => {
+
+export const updateBook = ({ id, chapter, percentage }) => async dispatch => {
   try {
-    const data = { current_chapter: chapter };
+    const data = { current_chapter: chapter, percent: percentage };
     const response = await axios.put(
-      `https://bookstore-backend-rails.herokuapp.com/books/${book.id}`,
+      `https://bookstore-backend-rails.herokuapp.com/books/${id}`,
       data,
     );
     const payload = response.data;
     return dispatch({
-      type: UPDATE_CHAPTER,
+      type: UPDATE_BOOK,
       payload,
     });
   } catch (error) {

@@ -34,7 +34,7 @@ const BookForm = ({ addBook }) => {
 
   const categoriesOptions = categories.map(category => <option key={category}>{category}</option>);
 
-  const { title, category, author, percent } = book;
+  const { title, category, author } = book;
   return (
     <section className="add-book-form pt-4">
       <h3 className="text-secondary">ADD NEW BOOK</h3>
@@ -70,24 +70,6 @@ const BookForm = ({ addBook }) => {
             onChange={handleChange}
             value={author}
           />
-        </div>
-
-        <div className="form-group">
-          <label htmlFor="percent" className="text-center">
-            {percent}
-            %
-            <input
-              type="range"
-              className="form-control-range"
-              name="percent"
-              id="percent"
-              min="0"
-              max="100"
-              required
-              onChange={handleChange}
-              value={percent}
-            />
-          </label>
         </div>
 
         <div className="form-group mb-0 w-25">

@@ -11,7 +11,7 @@ import {
   getBooks,
   addComment,
   removeComment,
-  updateChapter,
+  updateBook,
 } from '../actions/index';
 const BookList = ({
   books,
@@ -22,7 +22,7 @@ const BookList = ({
   getBooks,
   addComment,
   removeComment,
-  updateChapter,
+  updateBook,
 }) => {
   useEffect(() => {
     getBooks();
@@ -36,16 +36,18 @@ const BookList = ({
     );
   }
 
-  bookItems = bookItems.map(book => (
-    <Book
-      key={book.id}
-      book={book}
-      onDelete={book => removeBook(book)}
-      onNewComment={comment => addComment(comment)}
-      onDeleteComment={comment => removeComment(comment)}
-      onChapterUpdate={(book, chapter) => updateChapter(book, chapter)}
-    />
-  ));
+  bookItems = bookItems
+    .sort((bookA, bookB) => new Date(bookB.created_at) - new Date(bookA.created_at))
+    .map(book => (
+      <Book
+        key={book.id}
+        book={book}
+        onDelete={book => removeBook(book)}
+        onNewComment={comment => addComment(comment)}
+        onDeleteComment={comment => removeComment(comment)}
+        onChapterUpdate={bookUpdates => updateBook(bookUpdates)}
+      />
+    ));
 
   return (
     <section className="book-list py-4 border-bottom">
@@ -71,7 +73,7 @@ BookList.propTypes = {
   filterBooks: PropTypes.func.isRequired,
   displayFilter: PropTypes.bool.isRequired,
   addComment: PropTypes.func.isRequired,
-  updateChapter: PropTypes.func.isRequired,
+  updateBook: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -85,5 +87,5 @@ export default connect(mapStateToProps, {
   getBooks,
   addComment,
   removeComment,
-  updateChapter,
+  updateBook,
 })(BookList);

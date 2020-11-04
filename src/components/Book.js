@@ -11,10 +11,11 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
     setShowComments(showComments => !showComments);
   };
 
+  const [percentage, setPercentage] = useState(book.percent);
   const [chapter, setChapter] = useState(book.current_chapter);
-  const handleUpdateChapter = e => {
+  const handleUpdateBook = e => {
     e.preventDefault();
-    onChapterUpdate(book, chapter);
+    onChapterUpdate({ id: book.id, chapter, percentage });
   };
 
   const handleClick = e => {
@@ -22,7 +23,7 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
     onDelete(book);
   };
 
-  const { title, author, category, comments, percent, id } = book;
+  const { title, author, category, comments, id } = book;
 
   return (
     <article className="book d-flex align-items-center justify-content-between mb-3 p-3 border">
@@ -57,60 +58,74 @@ const Book = ({ book, onDelete, onNewComment, onDeleteComment, onChapterUpdate }
           />
         )}
       </div>
-      <div className="book-status d-flex align-items-center pr-5">
-        <div className="book-status-percent d-flex align-items-center border-right pr-5">
-          <svg id="circle" viewBox="0 0 100 100" width="100" height="100">
-            <circle
-              r="30"
-              cx="50%"
-              cy="50%"
-              stroke="#e0e0e0"
-              fill="none"
-              strokeWidth="10"
-              strokeLinecap="round"
-              strokeDasharray="0, 0"
-            />
-            <circle
-              id="success-value"
-              r="30"
-              cx="50%"
-              cy="50%"
-              stroke="#307bbe"
-              fill="none"
-              strokeWidth="10"
-              strokeLinecap="round"
-              strokeDasharray={`${+percent * 1.8}, 400`}
-            />
-          </svg>
-          <div className="ml-3">
-            <h4 className="book-status-percent-title mb-0 h2">{percent}%</h4>
-            <p className="book-status-percent-subtitle mb-0 text-secondary">Completed</p>
+      <div>
+        <div className="book-status d-flex align-items-center pr-5">
+          <div className="book-status-percent d-flex align-items-center border-right pr-3">
+            <svg id="circle" viewBox="0 0 100 100" width="100" height="100">
+              <circle
+                r="30"
+                cx="50%"
+                cy="50%"
+                stroke="#e0e0e0"
+                fill="none"
+                strokeWidth="10"
+                strokeLinecap="round"
+                strokeDasharray="0, 0"
+              />
+              <circle
+                id="success-value"
+                r="30"
+                cx="50%"
+                cy="50%"
+                stroke="#307bbe"
+                fill="none"
+                strokeWidth="10"
+                strokeLinecap="round"
+                strokeDasharray={`${+percentage * 1.8}, 400`}
+              />
+            </svg>
+            <div className="ml-3">
+              <h4 className="book-status-percent-title mb-0 h2">{percentage}%</h4>
+              <p className="book-status-percent-subtitle mb-0 text-secondary">Completed</p>
+              <div className="form-group">
+                <input
+                  type="range"
+                  className="form-control-range"
+                  name="percent"
+                  id="percent"
+                  min="0"
+                  max="100"
+                  required
+                  onChange={e => setPercentage(e.target.value)}
+                  value={percentage}
+                />
+              </div>
+            </div>
+          </div>
+
+          <div className="book-status-chapter pl-3">
+            <p className="book-status-chapter-subtitle text-secondary mb-0">CURRENT CHAPTER</p>
+            <h4 className="book-status-chapter-title h5">
+              <input
+                className="form-control"
+                type="number"
+                name="current_chapter"
+                id="current_chapter"
+                onChange={e => setChapter(e.target.value)}
+                min="0"
+                max="100"
+                value={chapter || '0'}
+              />
+            </h4>
           </div>
         </div>
-
-        <div className="book-status-chapter pl-5">
-          <p className="book-status-chapter-subtitle text-secondary mb-0">CURRENT CHAPTER</p>
-          <h4 className="book-status-chapter-title h5">
-            <input
-              className="form-control"
-              type="number"
-              name="current_chapter"
-              id="current_chapter"
-              onChange={e => setChapter(e.target.value)}
-              min="0"
-              max="100"
-              value={chapter || '0'}
-            />
-          </h4>
-
-          <button
-            type="button"
-            className="btn btn-info rounded px-4 py-1 text-uppercase mt-2"
-            onClick={handleUpdateChapter}
-          >
-            Update
-          </button>
-        </div>
+        <button
+          type="button"
+          className="btn btn-info rounded px-4 py-1 text-uppercase mt-2 d-block mx-auto"
+          onClick={handleUpdateBook}
+        >
+          Update status
+        </button>
       </div>
     </article>
   );

@@ -5,7 +5,7 @@ import {
   GET_BOOKS,
   ADD_COMMENT,
   REMOVE_COMMENT,
-  UPDATE_CHAPTER,
+  UPDATE_BOOK,
 } from '../actions/types';
 
 const bookReducer = (state = [], action) => {
@@ -14,7 +14,7 @@ const bookReducer = (state = [], action) => {
       return [...action.payload];
     case CREATE_BOOK:
       return [...state, action.payload];
-    case UPDATE_CHAPTER:
+    case UPDATE_BOOK:
       return [...state].map(book => {
         if (book.id === action.payload.id) {
           return action.payload;
