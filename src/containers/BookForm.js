@@ -36,10 +36,9 @@ const BookForm = ({ addBook }) => {
 
   const { title, category, author } = book;
   return (
-    <section className="add-book-form pt-4">
-      <h3 className="text-secondary px-3">ADD NEW BOOK</h3>
+    <section className="add-book-form form-group mb-4 bg-white w-100 px-2 py-3 shadow-sm">
       <form
-        className="d-flex align-items-stretch align-items-md-center flex-wrap flex-column flex-md-row justify-content-center justify-content-lg-between shadow-top w-100 py-3 px-2 bg-light"
+        className="d-flex align-items-stretch align-items-md-center flex-wrap flex-column flex-md-row justify-content-center justify-content-lg-between w-100 px-2"
         onSubmit={handleSubmit}
       >
         <div className="form-group mb-0">

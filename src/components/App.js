@@ -1,19 +1,28 @@
 import React, { useEffect, useState } from 'react';
 
 import userIcon from '../assets/user.svg';
+import brandIcon from '../assets/brand.ico';
 
 import BookList from '../containers/BookList';
-import BookForm from '../containers/BookForm';
 
 function App() {
   const [displayFilter, setDisplayFilter] = useState(false);
+  const [addBookForm, setAddBookForm] = useState(false);
 
   useEffect(() => {
     const handleNavLickClick = e => {
       if (e.target.id === 'filter') {
         e.preventDefault();
         setDisplayFilter(displayFilter => !displayFilter);
+        setAddBookForm(false);
       }
+
+      if (e.target.id === 'addBook') {
+        e.preventDefault();
+        setAddBookForm(addBookForm => !addBookForm);
+        setDisplayFilter(false);
+      }
+
       document.querySelectorAll('.active').forEach(item => item.classList.remove('active'));
       e.target.classList.add('active');
     };
@@ -32,18 +41,19 @@ function App() {
       >
         <ul className="list-unstyled mb-0 d-flex align-items-center justify-content-center flex-wrap">
           <li className="px-5 px-md-0">
-            <a href="/" className="nav-brand mr-3">
-              Bookstore CMS
-            </a>
-          </li>
-          <li>
-            <a href="/" className="nav-link active text-uppercase text-dark">
-              Books
+            <a href="/" className="nav-brand mr-3 d-flex align-items-center text-decoration-none">
+              <img src={brandIcon} alt="Brand icon" width="30" height="30" className="mr-1" />
+              MyLibrary
             </a>
           </li>
           <li>
             <a href="/" className="nav-link text-uppercase text-muted" id="filter">
               Categories
+            </a>
+          </li>
+          <li>
+            <a href="/" className="nav-link text-uppercase text-muted" id="addBook">
+              Add book
             </a>
           </li>
         </ul>
@@ -63,8 +73,7 @@ function App() {
         </ul>
       </nav>
       <main>
-        <BookList displayFilter={displayFilter} />
-        <BookForm />
+        <BookList displayFilter={displayFilter} addBookForm={addBookForm} />
       </main>
     </div>
   );
