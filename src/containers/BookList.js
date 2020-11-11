@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import Book from '../components/Book';
+import BookForm from './BookForm';
 import CategoryFilter from '../components/CategoryFilter';
 import {
   removeBook,
@@ -19,6 +20,7 @@ const BookList = ({
   removeBook,
   filterBooks,
   displayFilter,
+  addBookForm,
   getBooks,
   addComment,
   removeComment,
@@ -50,6 +52,7 @@ const BookList = ({
   return (
     <section className="book-list py-4 border-bottom">
       {displayFilter && <CategoryFilter onFilterChange={filter => filterBooks(filter)} />}
+      {addBookForm && <BookForm />}
       {bookItems}
     </section>
   );
@@ -70,6 +73,7 @@ BookList.propTypes = {
   removeComment: PropTypes.func.isRequired,
   filterBooks: PropTypes.func.isRequired,
   displayFilter: PropTypes.bool.isRequired,
+  addBookForm: PropTypes.bool.isRequired,
   addComment: PropTypes.func.isRequired,
   updateBook: PropTypes.func.isRequired,
 };

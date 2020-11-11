@@ -11,7 +11,7 @@
 }
 
 * {
-  transition: all 0.3s ease-in;
+  transition: all 0.1s ease-in;
 }
 
 body {
@@ -67,10 +67,6 @@ main {
     background-color: #fff;
     padding: 0 100px;
   }
-}
-
-.add-book-form {
-  padding-bottom: 250px;
 }
 
 .book-details {
